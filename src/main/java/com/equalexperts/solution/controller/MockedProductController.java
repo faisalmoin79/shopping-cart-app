@@ -27,8 +27,8 @@ public class MockedProductController {
 	 * 
 	 * cheerios cornflakes frosties shreddies weetabix
 	 * 
-	 * Inputs: Add 1 × cornflakes @ 2.52 each Add another 1 x cornflakes @2.52 each
-	 * Add 1 × weetabix @ 9.98 each Results Cart contains 2 x cornflakes Cart
+	 * Inputs: Add 1 x cornflakes @ 2.52 each Add another 1 x cornflakes @2.52 each
+	 * Add 1 x weetabix @ 9.98 each Results Cart contains 2 x cornflakes Cart
 	 * contains 1 x weetabix Subtotal = 15.02 Tax = 1.88 Total = 16.90
 	 */
 
@@ -48,7 +48,7 @@ public class MockedProductController {
 	public ResponseEntity<Product> getProduct(@PathVariable("product") String productName) {
 		if (!ObjectUtils.isEmpty(productName)) {
 			Optional<Product> optProduct = mockedProducts.stream()
-					.filter(p -> p.getName().equalsIgnoreCase(productName)).findFirst();
+					.filter(p -> p.getTitle().equalsIgnoreCase(productName)).findFirst();
 			if (optProduct.isPresent())
 				return ResponseEntity.ok(optProduct.get());
 		}

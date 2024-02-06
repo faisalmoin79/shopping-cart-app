@@ -18,11 +18,11 @@ public class CartItemImpl implements CartItem {
 
 	@Override
 	public String getItemName() {
-		return product.getName();
+		return product.getTitle();
 	}
 
 	@Override
-	public float getItemPrice() {
+	public double getItemPrice() {
 		return product.getPrice();
 	}
 

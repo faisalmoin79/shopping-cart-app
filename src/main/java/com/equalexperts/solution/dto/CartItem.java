@@ -3,11 +3,11 @@ package com.equalexperts.solution.dto;
 public interface CartItem {
 	public String getItemName();
 
-	public float getItemPrice();
+	public double getItemPrice();
 
 	public int getQuantity();
 
-	default float getItemTotal() {
+	default double getItemTotal() {// default method
 		return getItemPrice() * this.getQuantity();
-	}; // default method
+	}; 
 }
