@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.equalexperts.solution.dto.Product;
 
+/**
+ * This Controller class is not needed anymore. This was added the mock the original API
+ * @author Faisal Khan
+ *
+ */
+
 @RestController
 @RequestMapping("/product-api")
 public class MockedProductController {

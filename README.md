@@ -37,9 +37,9 @@ Available products
 The below is a sample with the correct values you can use to confirm your calculations
 
 ### Inputs
-* Add 1 × cornflakes @ 2.52 each
+* Add 1 X cornflakes @ 2.52 each
 * Add another 1 x cornflakes @2.52 each
-* Add 1 × weetabix @ 9.98 each
+* Add 1 X weetabix @ 9.98 each
   
 ### Results  
 * Cart contains 2 x cornflakes
@@ -48,18 +48,40 @@ The below is a sample with the correct values you can use to confirm your calcul
 * Tax = 1.88
 * Total = 16.90
 
-## Tips on what we’re looking for
+## Tips on what we're looking for
 
-We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex. We prefer simple, well tested solutions over clever solutions. 
+We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn't be overly complex. We prefer simple, well tested solutions over clever solutions. 
 
 ### DO
 
-* ✅ Include unit tests.
-* ✅ Test both any client and logic.
-* ✅ Update the README.md with any relevant information, assumptions, and/or tradeoffs you would like to highlight.
+*  Include unit tests.
+*  Test both any client and logic.
+*  Update the README.md with any relevant information, assumptions, and/or tradeoffs you would like to highlight.
 
 ### DO NOT
 
-* ❌ Submit any form of app, such as web APIs, browser, desktop, or command-line applications.
-* ❌ Add unnecessary layers of abstraction.
-* ❌ Add unnecessary patterns/ architectural features that aren’t called for e.g. persistent storage.
+*  Submit any form of app, such as web APIs, browser, desktop, or command-line applications.
+*  Add unnecessary layers of abstraction.
+*  Add unnecessary patterns/ architectural features that aren't called for e.g. persistent storage.
+
+### Solution
+
+## Building the App
+App can be built using gradle
+
+`gradlew.bat build`
+
+## Running the App
+`gradlew.bat bootRun`
+
+## Testing the App (Swagger)
+
+Once the application is running (using above command), the swagger-ui link
+
+`http://localhost:8080/equalexperts.github.io/swagger-ui/index.html`
+
+can be used to view and test the API calls.
+
+![Swagger UI](./swagger-ui.png)
+
+
