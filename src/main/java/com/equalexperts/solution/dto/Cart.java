@@ -45,7 +45,7 @@ public class Cart {
 		Optional<Double> subTotal;
 		if (cartItems != null && !cartItems.isEmpty()) {
 			subTotal = cartItems.stream()
-//					.peek(item -> log.debug("itemTotal: "+item.getItemTotal()))
+//					.peek(item -> log.info("itemTotal: "+item.getItemTotal()))
 					.map(item -> item.getItemTotal()).reduce((a, b) -> a + b);
 			if (subTotal.isPresent()) {
 				return subTotal.get();
@@ -53,6 +53,27 @@ public class Cart {
 		}
 		// loop through cartItems and add item total
 		return 0;
+	}
+	
+	public void removeFromCart(CartItem cartItem) {
+		// lookup for item
+		CartItem matchingItem = getMatchingCartItem(cartItem.getItemName());
+		if(matchingItem!=null) {
+			log.info("Item {} found in cart: ", cartItem.getItemName());
+			if(matchingItem.getQuantity()>1) {
+				log.info("Reducing quanity of item by 1");
+				CartItemImpl cartItemImpl = (CartItemImpl) matchingItem;
+				cartItemImpl.setQuantity(matchingItem.getQuantity()-1); // update quantity of existing items
+			}else {
+				log.info("Removing item: {} from cart", cartItem.getItemName());
+				cartItems.remove(matchingItem);
+			}
+		}
+		log.info("Could not find item: {} in cart", cartItem.getItemName());
+		
+		
+//		boolean isRemoved = cartItems.removeIf(item -> item.getItemName().equalsIgnoreCase(cartItem.getItemName()));
+//		log.info(isRemoved ? "Found matching item, removed and item");
 	}
 
 	public double getSubTotal() {
@@ -70,7 +91,7 @@ public class Cart {
 	CartItem getMatchingCartItem(String productName) {
 		if (!CollectionUtils.isEmpty(getCartItems())) {
 			Optional<CartItem> optCartItem = getCartItems().stream()
-					.filter(cartItem -> cartItem.getItemName().equals(productName)).findFirst();
+					.filter(cartItem -> cartItem.getItemName().equalsIgnoreCase(productName)).findFirst();
 			if (optCartItem.isPresent()) {
 				return optCartItem.get();
 			}

@@ -66,4 +66,10 @@ public class CartService {
 	public static void resetCart() { // clearing the in memory cart
 		cart.reset();
 	}
+
+	public Cart removeProductFromCart(String productName, int quantity) {
+		cart.removeFromCart(new CartItemImpl(new Product(productName, 1), quantity));
+		// TODO Auto-generated method stub
+		return cart;
+	}
 }
