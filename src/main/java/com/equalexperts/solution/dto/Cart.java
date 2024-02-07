@@ -7,8 +7,10 @@ import java.util.Optional;
 import org.springframework.util.CollectionUtils;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import util.Utility;
 
+@Slf4j
 @Data
 public class Cart {
 	List<CartItem> cartItems = new ArrayList<>();
@@ -21,8 +23,9 @@ public class Cart {
 
 	public void addToCart(CartItem cartItem) {
 		// lookup for item
-		CartItem matchingCartItem = getMatchingCartItem(cartItem.getItemName());
 		int quantity = cartItem.getQuantity();
+		CartItem matchingCartItem = getMatchingCartItem(cartItem.getItemName());
+		
 		if (matchingCartItem != null) { // if item already exists
 			int existingQuantity = matchingCartItem.getQuantity();
 			quantity += existingQuantity;
@@ -41,7 +44,9 @@ public class Cart {
 	private double calculateSubtotal() { // sum of price for all items
 		Optional<Double> subTotal;
 		if (cartItems != null && !cartItems.isEmpty()) {
-			subTotal = cartItems.stream().map(item -> item.getItemTotal()).reduce((a, b) -> a + b);
+			subTotal = cartItems.stream()
+//					.peek(item -> log.debug("itemTotal: "+item.getItemTotal()))
+					.map(item -> item.getItemTotal()).reduce((a, b) -> a + b);
 			if (subTotal.isPresent()) {
 				return subTotal.get();
 			}
@@ -62,7 +67,7 @@ public class Cart {
 		return Utility.round(subTotal + getTotalTax());
 	}
 
-	private CartItem getMatchingCartItem(String productName) {
+	CartItem getMatchingCartItem(String productName) {
 		if (!CollectionUtils.isEmpty(getCartItems())) {
 			Optional<CartItem> optCartItem = getCartItems().stream()
 					.filter(cartItem -> cartItem.getItemName().equals(productName)).findFirst();
