@@ -19,8 +19,12 @@ import com.equalexperts.solution.service.CartService;
 @Controller
 @RequestMapping("/cart")
 public class CartController {
+ 
+	private CartService cartService;
 	@Autowired
-	CartService cartService;
+	public CartController(CartService cartService) {
+		this.cartService = cartService;
+	}
 
 	@PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<Cart> addToCart(@RequestBody ProductRequest request) throws Exception {

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.util.CollectionUtils;
 
 import lombok.Data;
+import util.Utility;
 
 @Data
 public class Cart {
@@ -50,15 +51,15 @@ public class Cart {
 	}
 
 	public double getSubTotal() {
-		return round(subTotal);
+		return Utility.round(subTotal);
 	}
 	
 	public double getTotalTax() { // charged at 12.5% on the subtotal
-		return round(taxRate * subTotal);
+		return Utility.round(taxRate * subTotal);
 	}
 
 	public double getTotal() { // subtotal + tax
-		return round(subTotal + getTotalTax());
+		return Utility.round(subTotal + getTotalTax());
 	}
 
 	private CartItem getMatchingCartItem(String productName) {
@@ -73,12 +74,10 @@ public class Cart {
 		// iterates through list and returns cartItem with matching product name
 	}
 
-	private double round(double value) {
-		return Math.round(value * 100.0) / 100.0;
+	public void reset() {
+		this.cartItems =  new ArrayList<>();
+		subTotal = 0;
 	}
-//	private boolean isCartItemExist(CartItem cartItem) {
-//		return getMatchingCartItem(cartItem.getItemName()) == null ? false : true;
-//		// iterates through list and returns true if cartItem is found with matching
-//		// product name
-//	}
+
+
 }

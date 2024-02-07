@@ -34,11 +34,11 @@ public class MockedProductController {
 
 	List<Product> mockedProducts = new ArrayList<Product>() {
 		{
-			add(new Product("cheerios", 1.50f));
-			add(new Product("cornflakes", 2.52f));
-			add(new Product("frosties", 3.50f));
-			add(new Product("shreddies", 4.50f));
-			add(new Product("weetabix", 9.98f));
+			add(new Product("cheerios", 1.50));
+			add(new Product("cornflakes", 2.52));
+			add(new Product("frosties", 3.50));
+			add(new Product("shreddies", 4.50));
+			add(new Product("weetabix", 9.98));
 
 		}
 	};
